@@ -6,23 +6,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int []wholeNumberArray = {0,5,6,7,8,9,10,11,15,32,45,60,70,};
-        Integer x = 15;
-        int result = findMatchingPair(wholeNumberArray,15);
+        //Sample input data with duplicate array elements
+        int []wholeNumberArray = {1,1,1,5, 10, 32, 41,41};
+
+        int X = 42;
+
+        int result = findMatchingPair(wholeNumberArray,X);
+
         System.out.printf("value==> "+ result);
 
     }
 
     public static int findMatchingPair(int []wholeNumberArray, int y)
     {
+        //Total count of pairs
         int totalCountOfPair = 0;
 
-        for (int i = 0; i < wholeNumberArray.length; i++)
-        {
+        //Removing the duplicate array element to ensure each array element can only be used in one pair
 
-            for (int j = i+1; j < wholeNumberArray.length; j++)
+        int [] refinedArray = Arrays.stream(wholeNumberArray).distinct().toArray();
+
+        for (int i = 0; i < refinedArray.length; i++)
+        {
+            for (int j = i+1; j < refinedArray.length; j++)
             {
-                if (wholeNumberArray[i] + wholeNumberArray[j] == y)
+                if (refinedArray[i] + refinedArray[j] == y)
                 {
                     totalCountOfPair = totalCountOfPair + 1;
 
